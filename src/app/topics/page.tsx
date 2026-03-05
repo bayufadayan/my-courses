@@ -84,13 +84,13 @@ export default function TopicsPage() {
     <div className="mx-auto max-w-3xl">
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-semibold text-zinc-900">Topics</h1>
-          <p className="mt-0.5 text-sm text-zinc-500">Organise courses by topic</p>
+          <h1 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">Topics</h1>
+          <p className="mt-0.5 text-sm text-zinc-500 dark:text-zinc-400">Organise courses by topic</p>
         </div>
         {!showAdd && (
           <button
             onClick={() => setShowAdd(true)}
-            className="inline-flex items-center gap-1.5 rounded-md bg-zinc-900 px-3 py-2 text-sm font-medium text-white hover:bg-zinc-700"
+            className="inline-flex items-center gap-1.5 rounded-md bg-zinc-900 px-3 py-2 text-sm font-medium text-white hover:bg-zinc-700 dark:bg-zinc-700 dark:hover:bg-zinc-600"
           >
             <Plus size={14} />
             Add Topic
@@ -99,34 +99,34 @@ export default function TopicsPage() {
       </div>
 
       {showAdd && (
-        <div className="mb-4 flex items-center gap-2 rounded-xl border border-zinc-200 bg-white p-4 shadow-sm">
+        <div className="mb-4 flex items-center gap-2 rounded-xl border border-zinc-200 bg-white p-4 shadow-sm dark:border-zinc-700 dark:bg-zinc-900">
           <input
             autoFocus
             placeholder="Topic name"
             value={newName}
             onChange={(e) => setNewName(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && addTopic()}
-            className="flex-1 rounded-md border border-zinc-200 px-3 py-2 text-sm outline-none focus:border-zinc-400 focus:ring-2 focus:ring-zinc-100"
+            className="flex-1 rounded-md border border-zinc-200 px-3 py-2 text-sm outline-none focus:border-zinc-400 focus:ring-2 focus:ring-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 dark:placeholder-zinc-500 dark:focus:border-zinc-500"
           />
-          <button disabled={adding} onClick={addTopic} className="inline-flex items-center gap-1.5 rounded-md bg-zinc-900 px-3 py-2 text-sm font-medium text-white disabled:opacity-50">
+          <button disabled={adding} onClick={addTopic} className="inline-flex items-center gap-1.5 rounded-md bg-zinc-900 px-3 py-2 text-sm font-medium text-white disabled:opacity-50 dark:bg-zinc-700 dark:hover:bg-zinc-600">
             <Check size={14} /> {adding ? "Saving…" : "Save"}
           </button>
-          <button onClick={() => { setShowAdd(false); setNewName(""); }} className="rounded-md border border-zinc-200 p-2 text-zinc-500 hover:bg-zinc-50">
+          <button onClick={() => { setShowAdd(false); setNewName(""); }} className="rounded-md border border-zinc-200 p-2 text-zinc-500 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-800">
             <X size={14} />
           </button>
         </div>
       )}
 
-      <div className="overflow-hidden rounded-xl border border-zinc-100 bg-white shadow-sm">
+      <div className="overflow-hidden rounded-xl border border-zinc-100 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
         {loading ? (
-          <p className="p-6 text-sm text-zinc-400">Loading…</p>
+          <p className="p-6 text-sm text-zinc-400 dark:text-zinc-500">Loading…</p>
         ) : items.length === 0 ? (
-          <p className="p-6 text-sm text-zinc-400">No topics yet. Add one above.</p>
+          <p className="p-6 text-sm text-zinc-400 dark:text-zinc-500">No topics yet. Add one above.</p>
         ) : (
           <ul className="divide-y divide-zinc-100">
             {items.map((topic) => (
-              <li key={topic.id} className="flex items-center gap-3 px-4 py-3">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-zinc-100 text-zinc-500">
+              <li key={topic.id} className="flex items-center gap-3 px-4 py-3 dark:border-zinc-800">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-zinc-100 text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400">
                   <BookOpen size={15} />
                 </div>
 
@@ -136,13 +136,13 @@ export default function TopicsPage() {
                     value={editName}
                     onChange={(e) => setEditName(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && saveTopic(topic.id)}
-                    className="flex-1 rounded-md border border-zinc-200 px-2 py-1 text-sm outline-none focus:border-zinc-400"
+                    className="flex-1 rounded-md border border-zinc-200 px-2 py-1 text-sm outline-none focus:border-zinc-400 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
                   />
                 ) : (
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-zinc-900">{topic.name}</p>
+                    <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">{topic.name}</p>
                     {topic._count !== undefined && (
-                      <p className="text-xs text-zinc-400">{topic._count.courses} course{topic._count.courses !== 1 ? "s" : ""}</p>
+                      <p className="text-xs text-zinc-400 dark:text-zinc-500">{topic._count.courses} course{topic._count.courses !== 1 ? "s" : ""}</p>
                     )}
                   </div>
                 )}
@@ -150,10 +150,10 @@ export default function TopicsPage() {
                 <div className="flex items-center gap-1">
                   {editId === topic.id ? (
                     <>
-                      <button disabled={saving} onClick={() => saveTopic(topic.id)} className="rounded p-1.5 text-zinc-500 hover:bg-green-50 hover:text-green-600 disabled:opacity-50">
+                      <button disabled={saving} onClick={() => saveTopic(topic.id)} className="rounded p-1.5 text-zinc-500 hover:bg-green-50 hover:text-green-600 disabled:opacity-50 dark:text-zinc-400 dark:hover:bg-green-950 dark:hover:text-green-400">
                         <Check size={14} />
                       </button>
-                      <button onClick={() => setEditId(null)} className="rounded p-1.5 text-zinc-500 hover:bg-zinc-50">
+                      <button onClick={() => setEditId(null)} className="rounded p-1.5 text-zinc-500 hover:bg-zinc-50 dark:text-zinc-400 dark:hover:bg-zinc-800">
                         <X size={14} />
                       </button>
                     </>
@@ -161,13 +161,13 @@ export default function TopicsPage() {
                     <>
                       <button
                         onClick={() => { setEditId(topic.id); setEditName(topic.name); }}
-                        className="rounded p-1.5 text-zinc-400 hover:bg-zinc-100 hover:text-zinc-700"
+                        className="rounded p-1.5 text-zinc-400 hover:bg-zinc-100 hover:text-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-zinc-200"
                       >
                         <Pencil size={14} />
                       </button>
                       <button
                         onClick={() => setToDelete(topic.id)}
-                        className="rounded p-1.5 text-zinc-400 hover:bg-red-50 hover:text-red-600"
+                        className="rounded p-1.5 text-zinc-400 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950 dark:hover:text-red-400"
                       >
                         <X size={14} />
                       </button>

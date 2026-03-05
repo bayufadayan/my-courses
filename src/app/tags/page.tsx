@@ -56,13 +56,13 @@ export default function TagsPage() {
     <div className="mx-auto max-w-3xl">
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-semibold text-zinc-900">Tags</h1>
-          <p className="mt-0.5 text-sm text-zinc-500">Categorise courses with tags</p>
+          <h1 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">Tags</h1>
+          <p className="mt-0.5 text-sm text-zinc-500 dark:text-zinc-400">Categorise courses with tags</p>
         </div>
         {!showAdd && (
           <button
             onClick={() => setShowAdd(true)}
-            className="inline-flex items-center gap-1.5 rounded-md bg-zinc-900 px-3 py-2 text-sm font-medium text-white hover:bg-zinc-700"
+            className="inline-flex items-center gap-1.5 rounded-md bg-zinc-900 px-3 py-2 text-sm font-medium text-white hover:bg-zinc-700 dark:bg-zinc-700 dark:hover:bg-zinc-600"
           >
             <Plus size={14} />
             Add Tag
@@ -71,35 +71,35 @@ export default function TagsPage() {
       </div>
 
       {showAdd && (
-        <div className="mb-4 flex items-center gap-2 rounded-xl border border-zinc-200 bg-white p-4 shadow-sm">
+        <div className="mb-4 flex items-center gap-2 rounded-xl border border-zinc-200 bg-white p-4 shadow-sm dark:border-zinc-700 dark:bg-zinc-900">
           <input
             autoFocus
             placeholder="Tag name (lowercase)"
             value={newName}
             onChange={(e) => setNewName(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && addTag()}
-            className="flex-1 rounded-md border border-zinc-200 px-3 py-2 text-sm outline-none focus:border-zinc-400 focus:ring-2 focus:ring-zinc-100"
+            className="flex-1 rounded-md border border-zinc-200 px-3 py-2 text-sm outline-none focus:border-zinc-400 focus:ring-2 focus:ring-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 dark:placeholder-zinc-500"
           />
-          <button disabled={adding} onClick={addTag} className="inline-flex items-center gap-1.5 rounded-md bg-zinc-900 px-3 py-2 text-sm font-medium text-white disabled:opacity-50">
+          <button disabled={adding} onClick={addTag} className="inline-flex items-center gap-1.5 rounded-md bg-zinc-900 px-3 py-2 text-sm font-medium text-white disabled:opacity-50 dark:bg-zinc-700 dark:hover:bg-zinc-600">
             <Check size={14} /> {adding ? "Saving…" : "Save"}
           </button>
-          <button onClick={() => { setShowAdd(false); setNewName(""); }} className="rounded-md border border-zinc-200 p-2 text-zinc-500 hover:bg-zinc-50">
+          <button onClick={() => { setShowAdd(false); setNewName(""); }} className="rounded-md border border-zinc-200 p-2 text-zinc-500 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-800">
             <X size={14} />
           </button>
         </div>
       )}
 
-      <div className="rounded-xl border border-zinc-100 bg-white p-5 shadow-sm">
+      <div className="rounded-xl border border-zinc-100 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
         {loading ? (
-          <p className="text-sm text-zinc-400">Loading…</p>
+          <p className="text-sm text-zinc-400 dark:text-zinc-500">Loading…</p>
         ) : items.length === 0 ? (
-          <p className="text-sm text-zinc-400">No tags yet. Add one above.</p>
+          <p className="text-sm text-zinc-400 dark:text-zinc-500">No tags yet. Add one above.</p>
         ) : (
           <div className="flex flex-wrap gap-2">
             {items.map((tag) => (
               <span
                 key={tag.id}
-                className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-zinc-50 pl-3 pr-1.5 py-1 text-sm font-medium text-zinc-700"
+                className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-zinc-50 pl-3 pr-1.5 py-1 text-sm font-medium text-zinc-700 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
               >
                 {tag.name}
                 {tag._count !== undefined && (
@@ -109,7 +109,7 @@ export default function TagsPage() {
                 )}
                 <button
                   onClick={() => setToDelete(tag.id)}
-                  className="ml-0.5 flex h-5 w-5 items-center justify-center rounded-full text-zinc-400 hover:bg-red-100 hover:text-red-600 transition-colors"
+                  className="ml-0.5 flex h-5 w-5 items-center justify-center rounded-full text-zinc-400 hover:bg-red-100 hover:text-red-600 transition-colors dark:hover:bg-red-950 dark:hover:text-red-400"
                 >
                   <X size={11} />
                 </button>

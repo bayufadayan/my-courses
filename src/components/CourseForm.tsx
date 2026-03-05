@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { X, Check, Link as LinkIcon, Tag } from "lucide-react";
 
 const inputCls =
-  "w-full rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 outline-none ring-offset-1 transition focus:border-zinc-400 focus:ring-2 focus:ring-zinc-200";
+  "w-full rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 outline-none ring-offset-1 transition focus:border-zinc-400 focus:ring-2 focus:ring-zinc-200 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 dark:placeholder-zinc-500 dark:focus:border-zinc-500 dark:focus:ring-zinc-700";
 
-const labelCls = "mb-1.5 block text-xs font-semibold text-zinc-600";
+const labelCls = "mb-1.5 block text-xs font-semibold text-zinc-600 dark:text-zinc-400";
 
 export type CourseFormData = {
   title: string;
@@ -138,8 +138,8 @@ export default function CourseForm({ initial = {}, onCancel, onSubmit }: Props) 
                   onClick={() => toggleTag(t.id)}
                   className={`rounded-full border px-2.5 py-0.5 text-xs font-medium transition-colors ${
                     active
-                      ? "border-zinc-900 bg-zinc-900 text-white"
-                      : "border-zinc-200 bg-white text-zinc-600 hover:border-zinc-400"
+                    ? "border-zinc-900 bg-zinc-900 text-white dark:border-zinc-500 dark:bg-zinc-700"
+                    : "border-zinc-200 bg-white text-zinc-600 hover:border-zinc-400 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:border-zinc-500"
                   }`}
                 >
                   {t.name}
@@ -161,7 +161,7 @@ export default function CourseForm({ initial = {}, onCancel, onSubmit }: Props) 
         <button
           type="submit"
           disabled={loading}
-          className="inline-flex items-center gap-2 rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-700 disabled:opacity-50"
+          className="inline-flex items-center gap-2 rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-700 disabled:opacity-50 dark:bg-zinc-700 dark:hover:bg-zinc-600"
         >
           <Check size={14} />
           {loading ? "Saving…" : "Save Course"}
@@ -169,7 +169,7 @@ export default function CourseForm({ initial = {}, onCancel, onSubmit }: Props) 
         <button
           type="button"
           onClick={onCancel}
-          className="inline-flex items-center gap-2 rounded-md border border-zinc-200 bg-white px-4 py-2 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-50"
+          className="inline-flex items-center gap-2 rounded-md border border-zinc-200 bg-white px-4 py-2 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700"
         >
           <X size={14} />
           Cancel

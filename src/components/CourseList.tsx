@@ -23,9 +23,9 @@ type Props = {
 export default function CourseList({ items = [], onEdit, onDelete }: Props) {
   if (items.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-zinc-200 bg-white py-16 text-center">
-        <p className="text-sm font-medium text-zinc-500">No courses yet</p>
-        <p className="mt-1 text-xs text-zinc-400">Add your first course to get started.</p>
+      <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-zinc-200 bg-white py-16 text-center dark:border-zinc-700 dark:bg-zinc-900">
+        <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400">No courses yet</p>
+        <p className="mt-1 text-xs text-zinc-400 dark:text-zinc-600">Add your first course to get started.</p>
       </div>
     );
   }
