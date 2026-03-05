@@ -1,0 +1,54 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+}
+
+enum CourseStatus {
+    planned
+    learning
+    completed
+}
+
+model Topic {
+    id        String   @id @default(uuid()) @db.Uuid
+    name      String   @unique
+    courses   Course[]
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Course {
+    id         String       @id @default(uuid()) @db.Uuid
+    title      String
+    topicId    String       @db.Uuid
+    topic      Topic        @relation(fields: [topicId], references: [id], onDelete: Cascade)
+    platform   String
+    instructor String?
+    link       String
+    status     CourseStatus @default(planned)
+    notes      String?
+    tags       CourseTag[]
+    createdAt  DateTime     @default(now())
+    updatedAt  DateTime     @updatedAt
+}
+
+model Tag {
+    id      String      @id @default(uuid()) @db.Uuid
+    name    String      @unique
+    courses CourseTag[]
+}
+
+model CourseTag {
+    id       String @id @default(uuid()) @db.Uuid
+    courseId String @db.Uuid
+    tagId    String @db.Uuid
+    course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+    tag      Tag    @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+    @@unique([courseId, tagId])
+    @@index([courseId])
+    @@index([tagId])
+}
